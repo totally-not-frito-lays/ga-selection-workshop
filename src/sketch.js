@@ -1,8 +1,13 @@
 const POP_SIZE = 1000;    // number of combinations in a generation
 const SAMP_SIZE = 100;    // number of candidates in the pool
 
+let population = [];
+
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
+  for (let i = 0; i < population.length; i++) {
+    population[i] = new DNA(SAMP_SIZE);
+  }
 }
 
 function draw() {
