@@ -12,7 +12,7 @@ function setup() {
 
 function draw() {
   background(220, 100, 200);
-  drawStudentPopulation(0,0, generatePopulation());
+  drawStudentPopulation(0, 0, generatePopulation());
   noLoop();
 }
 
