@@ -1,29 +1,27 @@
-const POP_SIZE = 1000;    // number of combinations in a generation
+const POP_SIZE = 1000;    // number of combinations in a GA generation
 const SAMP_SIZE = 100;    // number of candidates in the pool
+const MUTATE_RATE = 0.01; // chance of mutation ooccuring per cell
 
 let population = [];
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  for (let i = 0; i < population.length; i++) {
+  // 1. Initialize population
+  for (let i = 0; i < POP_SIZE; i++) {
     population[i] = new DNA(SAMP_SIZE);
   }
 }
 
 function draw() {
   background(220, 100, 200);
-  drawStudentPopulation(0, 0, generatePopulation());
+  
+  // 2. Selection
+  // 2.a. Calculte Fitness
+  // for (let selection of population) {
+  //   selection.
+  // }
+  drawStudentPopulation(0, 0, new Population(SAMP_SIZE));
   noLoop();
-}
-
-function generatePopulation() {
-  let population = [SAMP_SIZE];
-  for (let i = 0; i < SAMP_SIZE; i++) {
-    population[i] = {
-      "gender": random(["M", "F"])
-    }
-  }
-  return population;
 }
 
 function drawStudentPopulation(x, y, population) {

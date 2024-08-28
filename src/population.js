@@ -1,11 +1,12 @@
 class Population {
   constructor(size) {
-    let population = [];
+    this.population = [];
     for (let i = 0; i < size; i++) {
       population[i] = {
         "gender": this.generateGender(),
       };
     }
+    return population;
   }
 
   generateGender() {

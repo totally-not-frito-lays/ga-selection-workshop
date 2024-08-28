@@ -1,13 +1,15 @@
 class DNA {
   constructor(size) {
     this.genes = [];
-    this.population = new Population();
     this.fitness = 0;
 
     for (let i = 0; i < size; i++) {
       this.genes[i] = randomSelection();
     }
-    console.log(this.genes);
+    this.calculateFitness();
+    
+    console.log(`Genes: ${this.genes}`);
+    console.log(this.fitness);
   }
 
   calculateFitness() {
@@ -42,17 +44,34 @@ class DNA {
 
     ratio = male / (female + other);
     const score = Math.abs(target - ratio);
-    const max_score = calculateRatioMax(target);
-    const normalized_score = normalizeScore(score, 0, max_score, 0.0, 1.0);
+    const score_min = 0;
+    const score_max = calculateRatioMax(target);
+    const normalized_min = 0.0;
+    const normalized_max = 1.0;
+    const normalized_score = normalizeScore(score, 
+      score_min, score_max, 
+      normalized_min, normalized_max
+    );
     return normalized_score;
   }
 
-  crossover() {
+  /**
+   * Takes 2 parents and returns a new child with mixed genes. The crossover 
+   * algorithm used is the coinflip algorithm where each genome in the sequence
+   * is randomly chosen to be from parent A or parent B.
+   * 
+   * @returns a new selection of candidates
+   */
+  crossover(partner) {
     let child = new DNA(this.genes.length);
     let midpoint = floor(random(this.genes.length));
     for (let i = 0; i < this.genes.length; i++) {
-      if (i < midpoint) {
+      if (randomSelection) {
+        // Parent 1
         child.genes[i] = this.genes[i];
+      } else {
+        // Parent 2
+        child.genes[i] = partner.genes[i];
       }
     }
     return child;
