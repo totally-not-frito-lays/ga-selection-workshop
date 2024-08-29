@@ -30,25 +30,25 @@ function draw() {
     candidates.calculateFitness(selection, GENDER_RATIO);
     // console.log(`selection: ${selection.genes}\nfitness: ${selection.fitness}`);
   }
-  drawStudentPopulation(0, 0, candidates.roster);
+  drawCandidates(0, 0, candidates.roster);
   noLoop();
 }
 
-function drawStudentPopulation(x, y, candidates) {
+function drawCandidates(x, y, candidates) {
   let rows = 5;
   let cols = SAMP_SIZE / rows;
-  let size = calcSize(SAMP_SIZE, rows);
+  let size = calcStandardSize(SAMP_SIZE, rows);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
       let box_h = col * size;
       let box_w = row * size;
-      drawStudent(x + box_h, y + box_w, size, candidates[row + col]);
+      drawCandidate(x + box_h, y + box_w, size, candidates[row + col]);
     }
   }
 }
 
-function drawStudent(x, y, size, stats) {
+function drawCandidate(x, y, size, stats) {
   rect(x, y, size);
   let font_size = size / 2;
   textSize(font_size);
@@ -57,6 +57,6 @@ function drawStudent(x, y, size, stats) {
   text(stats["gender"], x + xoff, y + yoff);
 }
 
-function calcSize(populationSize, rows) {
+function calcStandardSize(populationSize, rows) {
   return width / (populationSize / rows);
 }

@@ -11,6 +11,8 @@ at different levels. It tackles the following topics
 
 Soft topics that it can tackle:
 - Fairness (if we were to model adversarial team formation instead)
+- Fairness in terms of discriminatory factors
+  - ie. if we try affirmative action
 
 ## Creating a new P5 Project
 
