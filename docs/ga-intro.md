@@ -8,7 +8,7 @@
 | DNA Phenotype     | Each individual entity is scored differently in the matrix  |
 | Fitness Function  | F(x) = w_1 * dist_from_target_ratio                         |
 | Selection Style   | Probability model                                           |
-| Crossover         | Combination: Coinflipping                                   |
+| Crossover         | Combination: Coinflipping?                                  |
 | Mutation Rate     | 1%                                                          |
 
 Population
@@ -45,3 +45,7 @@ Fitness Function
       - best case:        `target = 25; actual = 50;    abs(target - actual) = 25`
       - upper edge case:  `target = 25; actual = 100;   abs(target - actual) = 75`
       - lower edge case:  `target = 25; actual = 0;     abs(target - actual) = 50`
+
+Genetic algorithms are okay at solving for single variable optimizations, but 
+they shine in multi-variable optimization problems and problems that don't have
+a well-defined problem space.
