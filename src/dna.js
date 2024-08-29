@@ -2,8 +2,16 @@ class DNA {
   constructor(size) {
     this.genes = [];
     this.fitness = 0;
+    this.selected_size = 0;
     for (let i = 0; i < size; i++) {
+      // Not to be confused with natural selection (or selection in relation
+      // to fitness). This selection just decides who is approved to move on
+      // to the next stage of the application process
       this.genes[i] = randomSelection();
+      // Keeps track of the number of selected candidates
+      if (this.genes[i]) {
+        this.selected_size++;
+      }
     }
   }
 

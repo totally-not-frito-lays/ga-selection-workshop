@@ -66,18 +66,21 @@ class Population {
         other++;
       }
     }
-    console.log(`ratio = ${male} / ${female}`);
-
+    
     // Normalize the gender ratio
-    ratio = male / this.roster.length;
-    console.log(`Ratio: ${ratio}`);
-    const target_male_count = target * this.roster.length;
+    ratio = male / selection.selected_size;
+    // console.log(`ratio = ${male} / ${selection.selected_size} = ${ratio}`);
+    const target_male_count = target * selection.selected_size;
     const score = Math.abs(target_male_count - male);
+    // console.log(`difference = ${target_male_count} - ${male} = ${score}`)
     const score_min = 0;
     const score_max = this.roster.length;
     const norm_min = 0.0;
     const norm_max = 1.0;
-    const normalized_score = map(score, score_min, score_max, norm_min, norm_max);
+    // We reverse the norm_max and norm_min because we want to incentize having
+    // a smaller difference between the target and the actual male count
+    const normalized_score = map(score, score_min, score_max, norm_max, norm_min);
+    console.log(`normalized_score = ${normalized_score}`);
     return normalized_score;
   }
 }
