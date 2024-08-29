@@ -1,14 +1,23 @@
+// Genetic Algorithm parameters
 const POP_SIZE = 1000;    // number of combinations in a GA generation
 const SAMP_SIZE = 100;    // number of candidates in the pool
 const MUTATE_RATE = 0.01; // chance of mutation ooccuring per cell
 
-let population = [];
+// Genetic Algorithm populations
+let selections = [];      // different selection options from the candidates list
+let candidates;           // actual candidates (only generated once)
+
+// Desired selection characteristics
+const GENDER_RATIO = 0.5;
 
 function setup() {
   createCanvas(window.innerWidth, window.innerHeight);
-  // 1. Initialize population
+  // 1. Initialize 
+  // 1.a. Create candidates list
+  candidates = new Population(SAMP_SIZE);
+  // 1.b. Create selections list
   for (let i = 0; i < POP_SIZE; i++) {
-    population[i] = new DNA(SAMP_SIZE);
+    selections[i] = new DNA(SAMP_SIZE);
   }
 }
 
@@ -17,14 +26,15 @@ function draw() {
   
   // 2. Selection
   // 2.a. Calculte Fitness
-  // for (let selection of population) {
-  //   selection.
-  // }
-  drawStudentPopulation(0, 0, new Population(SAMP_SIZE));
+  for (let selection of selections) {
+    candidates.calculateFitness(selection, GENDER_RATIO);
+    // console.log(`selection: ${selection.genes}\nfitness: ${selection.fitness}`);
+  }
+  drawStudentPopulation(0, 0, candidates.roster);
   noLoop();
 }
 
-function drawStudentPopulation(x, y, population) {
+function drawStudentPopulation(x, y, candidates) {
   let rows = 5;
   let cols = SAMP_SIZE / rows;
   let size = calcSize(SAMP_SIZE, rows);
@@ -33,7 +43,7 @@ function drawStudentPopulation(x, y, population) {
     for (let col = 0; col < cols; col++) {
       let box_h = col * size;
       let box_w = row * size;
-      drawStudent(x + box_h, y + box_w, size, population[row + col]);
+      drawStudent(x + box_h, y + box_w, size, candidates[row + col]);
     }
   }
 }

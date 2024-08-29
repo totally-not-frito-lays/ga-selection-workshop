@@ -9,6 +9,9 @@ at different levels. It tackles the following topics
 - Bias in selection
 - Randomness
 
+Soft topics that it can tackle:
+- Fairness (if we were to model adversarial team formation instead)
+
 ## Creating a new P5 Project
 
 Create the vite boilerplate
