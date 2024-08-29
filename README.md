@@ -14,14 +14,14 @@ Soft topics that it can tackle:
 - Fairness in terms of discriminatory factors
   - ie. if we try affirmative action
 
-## Creating a new P5 Project
+## Running the project
 
 Create the vite boilerplate
 
 ```bash
 npm create vite@latest
 cd <working-dir>
-npm insatll
+npm install
 npm run dev
 ```
 
