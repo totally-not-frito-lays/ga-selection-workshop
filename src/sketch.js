@@ -40,7 +40,7 @@ function draw() {
 function drawCandidates(x, y, candidates, display_feature) {
   let rows = 5;
   let cols = SAMP_SIZE / rows;
-  let size = calcStandardSize(SAMP_SIZE, rows);
+  let size = width / (SAMP_SIZE / rows);
 
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
@@ -92,7 +92,3 @@ function drawCandidate(x, y, size, stats, display_feature,
 //     }
 //   }
 // }
-
-function calcStandardSize(populationSize, rows) {
-  return width / (populationSize / rows);
-}
