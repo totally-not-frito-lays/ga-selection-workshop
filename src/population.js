@@ -80,7 +80,7 @@ class Population {
     // We reverse the norm_max and norm_min because we want to incentize having
     // a smaller difference between the target and the actual male count
     const normalized_score = map(score, score_min, score_max, norm_max, norm_min);
-    console.log(`normalized_score = ${normalized_score}`);
+    // console.log(`normalized_score = ${normalized_score}`);
     return normalized_score;
   }
 }
