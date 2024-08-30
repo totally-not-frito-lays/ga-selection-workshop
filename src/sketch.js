@@ -36,32 +36,7 @@ function draw() {
     // console.log(`selection: ${selection.genes}\nfitness: ${selection.fitness}`);
   }
   
-  // Draw selection grids
-  let x = 0;
-  let y = candidate_h;
-  let max_x = candidate_w;
-  let max_y = height;
-  let selection_h = candidate_h / 8;
-  let selection_w = candidate_w / 8;
-  for (let selection of selections) {
-    let x_bound_check = x > max_x;
-    let y_bound_check = y > max_y;
-    if (y_bound_check) {
-      // no more room in the canvas to make a new row
-      break;
-    }
-    if (x_bound_check) {
-      // start new row
-      x = 0;
-      y += selection_h;
-      drawCandidatesSmall(x, y, selection, true);
-    } else {
-      console.log(x);
-      // start new column
-      drawCandidatesSmall(x, y, selection, true);
-      x += selection_w;
-    }
-  }
+  drawSelections(candidate_h, candidate_w);
 
   // Display secondary lists at 1/8 scale
   noLoop();
@@ -107,7 +82,37 @@ function drawCandidate(x, y, size, stats, display_feature,
   }
 }
 
-function drawCandidatesSmall(x, y, selection, display_selection) {
+function drawSelections(candidate_h, candidate_w) {
+  // Draw selection grids
+  let x = 0;
+  let y = candidate_h;
+  let max_x = candidate_w;
+  let max_y = height;
+  let selection_h = candidate_h / 8;
+  let selection_w = candidate_w / 8;
+  for (let selection of selections) {
+    console.log(selection);
+    let x_bound_check = x > max_x;
+    let y_bound_check = y > max_y;
+    if (y_bound_check) {
+      // no more room in the canvas to make a new row
+      break;
+    }
+    if (x_bound_check) {
+      // start new row
+      x = 0;
+      y += selection_h;
+      drawSelection(x, y, selection, true);
+    } else {
+      // start new column
+      drawSelection(x, y, selection, true);
+      x += selection_w;
+    }
+  }
+}
+
+function drawSelection(x, y, selection, display_selection) {
+  console.log(selection);
   let rows = 5;
   let cols = SAMP_SIZE / rows;
   let size = width / (SAMP_SIZE / rows) * (1/8);

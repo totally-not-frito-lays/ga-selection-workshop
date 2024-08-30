@@ -3,6 +3,11 @@ class DNA {
     this.genes = [];
     this.fitness = 0;
     this.selected_size = 0;
+    this.gender_count = {
+      "M": 0,
+      "F": 0,
+      "O": 0
+    }
     for (let i = 0; i < size; i++) {
       // Not to be confused with natural selection (or selection in relation
       // to fitness). This selection just decides who is approved to move on

@@ -45,9 +45,10 @@ class Population {
    * @param {*} target desired gender ratio
    */
   scoreGenderRatio(selection, target) {
-    let male = 0.0;
-    let female = 0.0;
-    let other = 0;
+    selection.gender_count["M"] = 0;
+    selection.gender_count["F"] = 0;
+    selection.gender_count["O"] = 0;
+
     let ratio = 0.0;
 
     for (let i = 0; i < this.roster.length; i++) {
@@ -58,20 +59,20 @@ class Population {
 
       const curr_gender = this.roster[i]["gender"];
       if (curr_gender == "M") {
-        male++;
+        selection.gender_count["M"]++;
       }
       else if (curr_gender == "F") {
-       female++; 
+        selection.gender_count["F"]++; 
       } else {
-        other++;
+        selection.gender_count["O"]++;
       }
     }
     
     // Normalize the gender ratio
-    ratio = male / selection.selected_size;
+    ratio = selection.gender_count["M"] / selection.selected_size;
     // console.log(`ratio = ${male} / ${selection.selected_size} = ${ratio}`);
     const target_male_count = target * selection.selected_size;
-    const score = Math.abs(target_male_count - male);
+    const score = Math.abs(target_male_count - selection.gender_count["M"]);
     // console.log(`difference = ${target_male_count} - ${male} = ${score}`)
     const score_min = 0;
     const score_max = this.roster.length;
