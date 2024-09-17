@@ -70,3 +70,5 @@ project on the plane, here's an offline list of what I have left to do:
     - [ ] Impelment midpoint
     - [ ] Implement random midpoint
     - [x] Implement flipped coin
+- [ ] make sure you have a biased applicant pool, then create an unbiased selection
+- [ ] prioritize what the current generation is and who gets kept
